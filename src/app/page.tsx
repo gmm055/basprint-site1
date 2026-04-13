@@ -24,6 +24,21 @@ export default function Home() {
     "Выдаём готовую продукцию",
   ];
 
+  const reviews = [
+    {
+      name: "Жанеля",
+      text: "Быстро ответили, хорошая цена, приятный продавец.",
+    },
+    {
+      name: "Нурсулу Идигеева",
+      text: "Отличная полиграфия! Нашла через 2ГИС, всё сделали оперативно и именно так, как я хотела.",
+    },
+    {
+      name: "Aray Y",
+      text: "Уже год работаем с компанией, всегда качественно и в срок. Рекомендую!",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
@@ -45,13 +60,16 @@ export default function Home() {
             <a href="#steps" className="hover:text-slate-600">
               Как мы работаем
             </a>
+            <a href="#reviews" className="hover:text-slate-600">
+              Отзывы
+            </a>
             <a href="#contacts" className="hover:text-slate-600">
               Контакты
             </a>
           </nav>
 
           <a
-            href="https://wa.me/77024056954?text=Здравствуйте,%20хочу%20оформить%20заказ%20в%20Basprint"
+            href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
             target="_blank"
             rel="noreferrer"
             className="rounded-2xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
@@ -68,17 +86,18 @@ export default function Home() {
           </div>
 
           <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl">
-            Надёжная полиграфия для бизнеса и задач любого масштаба
+            Печать, которая продаёт и усиливает ваш бренд
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg text-slate-600">
-            От визиток и наклеек до сувенирной продукции и печатей —
-            делаем быстро, качественно и с вниманием к деталям.
+            Визитки, флаера, упаковка и сувенирная продукция — быстро,
+            качественно и с вниманием к деталям. Работаем с компаниями и
+            частными клиентами.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="https://wa.me/77024056954?text=Здравствуйте,%20хочу%20оформить%20заказ%20в%20Basprint"
+              href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
               target="_blank"
               rel="noreferrer"
               className="rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:opacity-90"
@@ -115,8 +134,8 @@ export default function Home() {
           <p className="mt-4 max-w-3xl text-slate-600">
             Basprint — полиграфическая компания, на которую можно положиться.
             Работаем с частными клиентами и бизнесом, выполняем заказы разного
-            масштаба и сложности, помогаем с макетами и стараемся сделать процесс
-            заказа максимально удобным.
+            масштаба и сложности, помогаем с макетами и стараемся сделать
+            процесс заказа максимально удобным.
           </p>
         </div>
       </section>
@@ -142,8 +161,8 @@ export default function Home() {
               </p>
 
               <a
-                href={`https://wa.me/77024056954?text=Здравствуйте,%20хочу%20заказать:%20${encodeURIComponent(
-                  item
+                href={`https://wa.me/77024056954?text=${encodeURIComponent(
+                  `Здравствуйте! Хочу заказать в Basprint: ${item}`
                 )}`}
                 target="_blank"
                 rel="noreferrer"
@@ -171,16 +190,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="reviews" className="mx-auto max-w-6xl px-6 py-12">
+        <div>
+          <h2 className="text-3xl font-bold">Отзывы клиентов</h2>
+          <p className="mt-2 text-slate-600">
+            Реальные отзывы клиентов Basprint.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {reviews.map((review) => (
+            <div
+              key={review.name}
+              className="rounded-2xl border border-slate-200 p-5 shadow-sm"
+            >
+              <div className="mb-3 text-yellow-500">★★★★★</div>
+              <p className="text-sm text-slate-600">{review.text}</p>
+              <div className="mt-4 font-medium">{review.name}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="rounded-3xl bg-slate-900 px-8 py-10 text-white">
           <h2 className="text-3xl font-bold">Готовы оформить заказ?</h2>
           <p className="mt-3 max-w-2xl text-slate-300">
-            Напишите нам в WhatsApp, и мы быстро подскажем по срокам,
-            стоимости и лучшему решению под вашу задачу.
+            Напишите нам в WhatsApp, и мы быстро подскажем по срокам, стоимости
+            и лучшему решению под вашу задачу.
           </p>
 
           <a
-            href="https://wa.me/77024056954?text=Здравствуйте,%20хочу%20оформить%20заказ%20в%20Basprint"
+            href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
             target="_blank"
             rel="noreferrer"
             className="mt-6 inline-block rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 transition hover:opacity-90"
@@ -210,7 +251,7 @@ export default function Home() {
               Позвонить
             </a>
             <a
-              href="https://wa.me/77024056954?text=Здравствуйте,%20хочу%20оформить%20заказ%20в%20Basprint"
+              href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
               target="_blank"
               rel="noreferrer"
               className="rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90"
