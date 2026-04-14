@@ -6,11 +6,7 @@ type Product = {
   name: string;
   category: string;
   description: string;
-};
-
-type Review = {
-  name: string;
-  text: string;
+  image: string;
 };
 
 export default function Home() {
@@ -30,101 +26,127 @@ export default function Home() {
       name: "Кружки",
       category: "Сувениры",
       description: "Печать на кружках для подарков, брендинга и корпоративных задач.",
+      image: "/images/mug.jpg",
     },
     {
       name: "Бутылки",
       category: "Сувениры",
       description: "Стильные бутылки с нанесением логотипа или индивидуального дизайна.",
+      image: "/images/bottle.jpg",
     },
     {
       name: "Термосы",
       category: "Сувениры",
       description: "Практичные термосы с персонализированной печатью.",
+      image: "/images/thermos.jpg",
     },
     {
       name: "Лифлеты",
       category: "Полиграфия",
       description: "Информативные материалы для бизнеса, рекламы и мероприятий.",
+      image: "/images/leaflet.jpg",
     },
     {
       name: "Флаера",
       category: "Полиграфия",
       description: "Яркие флаера для продвижения, акций и офлайн-рекламы.",
+      image: "/images/flyer.jpg",
     },
     {
       name: "Конверты с нанесением",
       category: "Полиграфия",
       description: "Фирменные конверты с печатью для деловой и корпоративной переписки.",
+      image: "/images/envelope.jpg",
     },
     {
       name: "Открытки",
       category: "Полиграфия",
       description: "Поздравительные, рекламные и брендированные открытки.",
+      image: "/images/postcard.jpg",
     },
     {
       name: "Меню",
       category: "Полиграфия",
       description: "Меню стандартных и нестандартных размеров для кафе и ресторанов.",
+      image: "/images/menu.jpg",
     },
     {
       name: "Книги",
       category: "Полиграфия",
       description: "Печать книг и многостраничной продукции с аккуратной сборкой.",
+      image: "/images/book.jpg",
     },
     {
       name: "Наклейки",
       category: "Полиграфия",
       description: "Наклейки и стикеры разных форматов для упаковки и рекламы.",
-    },
-    {
-      name: "Твёрдый переплёт",
-      category: "Полиграфия",
-      description: "Изделия в твёрдом переплёте для презентабельной подачи.",
-    },
-    {
-      name: "Коробки",
-      category: "Полиграфия",
-      description: "Коробки с индивидуальным оформлением и фирменной печатью.",
-    },
-    {
-      name: "Блокноты",
-      category: "Полиграфия",
-      description: "Брендированные блокноты для офиса, подарков и продаж.",
-    },
-    {
-      name: "Папки",
-      category: "Полиграфия",
-      description: "Фирменные папки для деловой документации и презентаций.",
-    },
-    {
-      name: "Магниты",
-      category: "Сувениры",
-      description: "Магниты с логотипом, изображением или рекламной подачей.",
-    },
-    {
-      name: "Календари",
-      category: "Полиграфия",
-      description: "Настольные и настенные календари под фирменный стиль.",
+      image: "/images/sticker.jpg",
     },
     {
       name: "Бейсболки",
       category: "Текстиль",
       description: "Нанесение логотипов и надписей на бейсболки.",
+      image: "/images/cap.jpg",
     },
     {
       name: "Шопперы",
       category: "Текстиль",
       description: "Печать на шопперах для брендов, мероприятий и мерча.",
+      image: "/images/shopper.jpg",
+    },
+    {
+      name: "Нанесение на футболки",
+      category: "Текстиль",
+      description: "Печать и брендирование футболок для бизнеса и мероприятий.",
+      image: "/images/tshirt.jpg",
+    },
+    {
+      name: "Твёрдый переплёт",
+      category: "Полиграфия",
+      description: "Изделия в твёрдом переплёте для презентабельной подачи.",
+      image: "/images/hardcover.jpg",
+    },
+    {
+      name: "Коробки",
+      category: "Полиграфия",
+      description: "Коробки с индивидуальным оформлением и фирменной печатью.",
+      image: "/images/box.jpg",
+    },
+    {
+      name: "Блокноты",
+      category: "Полиграфия",
+      description: "Брендированные блокноты для офиса, подарков и продаж.",
+      image: "/images/notebook.jpg",
+    },
+    {
+      name: "Папки",
+      category: "Полиграфия",
+      description: "Фирменные папки для деловой документации и презентаций.",
+      image: "/images/folder.jpg",
+    },
+    {
+      name: "Магниты",
+      category: "Сувениры",
+      description: "Магниты с логотипом, изображением или рекламной подачей.",
+      image: "/images/magnet.jpg",
+    },
+    {
+      name: "Календари",
+      category: "Полиграфия",
+      description: "Настольные и настенные календари под фирменный стиль.",
+      image: "/images/calendar.jpg",
     },
     {
       name: "Штампы",
       category: "Бизнес",
       description: "Штампы для бизнеса, офиса и документов с удобным заказом.",
+      image: "/images/stamp.jpg",
     },
     {
       name: "Печати",
       category: "Бизнес",
       description: "Изготовление печатей с быстрыми сроками и понятным процессом.",
+      image: "/images/seal.jpg",
     },
   ];
 
@@ -140,21 +162,7 @@ export default function Home() {
     "Помощь с макетом",
   ];
 
-  const quickCategories = [
-    "Визитки и открытки",
-    "Сувенирная продукция",
-    "Упаковка и коробки",
-    "Печати и штампы",
-  ];
-
-  const steps = [
-    "Вы пишете или звоните",
-    "Уточняем задачу и детали",
-    "Выполняем заказ",
-    "Выдаём готовую продукцию",
-  ];
-
-  const reviews: Review[] = [
+  const reviews = [
     {
       name: "Жанеля",
       text: "Быстро ответили, хорошая цена, приятный продавец.",
@@ -167,6 +175,13 @@ export default function Home() {
       name: "Aray Y",
       text: "Уже около года работаем с компанией. Всегда качественно, в срок и с вниманием к деталям.",
     },
+  ];
+
+  const steps = [
+    "Вы пишете или звоните",
+    "Уточняем задачу и детали",
+    "Выполняем заказ",
+    "Выдаём готовую продукцию",
   ];
 
   const pageClass = dark
@@ -280,9 +295,9 @@ export default function Home() {
             </h1>
 
             <p className={`mt-5 max-w-2xl text-lg leading-8 ${mutedTextClass}`}>
-              От флаеров, коробок и календарей до кружек, шопперов, печатей и
-              фирменной продукции — Basprint помогает быстро оформить заказ и
-              получить качественный результат без лишних сложностей.
+              От флаеров, коробок и календарей до кружек, футболок, шопперов,
+              штампов и печатей — Basprint помогает быстро оформить заказ и
+              получить качественный результат.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -320,7 +335,7 @@ export default function Home() {
 
           <div className={sectionCardClass + " p-6 lg:p-8"}>
             <div className="grid gap-4 sm:grid-cols-2">
-              {quickCategories.map((item, index) => (
+              {advantages.map((item, index) => (
                 <div key={item} className={smallCardClass}>
                   <div
                     className={`mb-4 h-12 w-12 rounded-2xl ${
@@ -335,22 +350,12 @@ export default function Home() {
                   />
                   <div className="font-medium">{item}</div>
                   <div className={`mt-2 text-sm ${mutedTextClass}`}>
-                    Быстрый переход к заказу и понятная подача услуг.
+                    Сильная сторона Basprint, которую чувствует клиент.
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="advantages" className="mx-auto max-w-7xl px-6 py-4">
-        <div className="grid gap-4 md:grid-cols-4">
-          {advantages.map((item) => (
-            <div key={item} className={smallCardClass}>
-              <div className="font-medium">{item}</div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -360,8 +365,8 @@ export default function Home() {
           <p className={`mt-4 max-w-3xl leading-7 ${mutedTextClass}`}>
             Basprint — полиграфическая компания, на которую можно положиться.
             Работаем с бизнесом и частными клиентами, выполняем заказы разного
-            масштаба, помогаем с макетами и делаем путь клиента удобным: от
-            первого сообщения до готового результата.
+            масштаба и делаем путь клиента максимально удобным: от первого
+            сообщения до готового результата.
           </p>
         </div>
       </section>
@@ -370,7 +375,7 @@ export default function Home() {
         <div>
           <h2 className="text-3xl font-bold">Каталог товаров и услуг</h2>
           <p className={`mt-2 ${mutedTextClass}`}>
-            Все ключевые направления Basprint — в одном месте.
+            Все основные направления Basprint — в одном месте.
           </p>
         </div>
 
@@ -402,13 +407,12 @@ export default function Home() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {filteredProducts.map((product) => (
             <div key={product.name} className={productCardClass}>
-              <div
-                className={`mb-4 h-40 rounded-2xl ${
-                  dark
-                    ? "bg-gradient-to-br from-slate-800 to-slate-900"
-                    : "bg-gradient-to-br from-slate-50 to-slate-100"
-                }`}
+              <img
+                src={product.image}
+                alt={product.name}
+                className="mb-4 h-48 w-full rounded-2xl object-cover"
               />
+
               <div
                 className={
                   dark
