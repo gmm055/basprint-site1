@@ -14,180 +14,201 @@ type Review = {
   text: string;
 };
 
+const products: Product[] = [
+  {
+    name: "Кружки",
+    category: "Сувениры",
+    description: "Печать на кружках для подарков, брендинга и корпоративных задач.",
+    image: "/images/mug.jpg",
+  },
+  {
+    name: "Бутылки",
+    category: "Сувениры",
+    description: "Стильные бутылки с нанесением логотипа или индивидуального дизайна.",
+    image: "/images/bottle.jpg",
+  },
+  {
+    name: "Термосы",
+    category: "Сувениры",
+    description: "Практичные термосы с персонализированной печатью.",
+    image: "/images/thermos.jpg",
+  },
+  {
+    name: "Лифлеты",
+    category: "Полиграфия",
+    description: "Информативные материалы для бизнеса, рекламы и мероприятий.",
+    image: "/images/leaflet.jpg",
+  },
+  {
+    name: "Флаера",
+    category: "Полиграфия",
+    description: "Яркие флаера для продвижения, акций и офлайн-рекламы.",
+    image: "/images/flyer.jpg",
+  },
+  {
+    name: "Конверты с нанесением",
+    category: "Полиграфия",
+    description: "Фирменные конверты с печатью для деловой и корпоративной переписки.",
+    image: "/images/envelope.jpg",
+  },
+  {
+    name: "Открытки",
+    category: "Полиграфия",
+    description: "Поздравительные, рекламные и брендированные открытки.",
+    image: "/images/postcard.jpg",
+  },
+  {
+    name: "Меню",
+    category: "Полиграфия",
+    description: "Меню стандартных и нестандартных размеров для кафе и ресторанов.",
+    image: "/images/menu.jpg",
+  },
+  {
+    name: "Книги",
+    category: "Полиграфия",
+    description: "Печать книг и многостраничной продукции с аккуратной сборкой.",
+    image: "/images/book.jpg",
+  },
+  {
+    name: "Наклейки",
+    category: "Полиграфия",
+    description: "Наклейки и стикеры разных форматов для упаковки и рекламы.",
+    image: "/images/sticker.jpg",
+  },
+  {
+    name: "Бейсболки",
+    category: "Текстиль",
+    description: "Нанесение логотипов и надписей на бейсболки.",
+    image: "/images/cap.jpg",
+  },
+  {
+    name: "Шопперы",
+    category: "Текстиль",
+    description: "Печать на шопперах для брендов, мероприятий и мерча.",
+    image: "/images/shopper.jpg",
+  },
+  {
+    name: "Нанесение на футболки",
+    category: "Текстиль",
+    description: "Печать и брендирование футболок для бизнеса и мероприятий.",
+    image: "/images/tshirt.jpg",
+  },
+  {
+    name: "Твёрдый переплёт",
+    category: "Полиграфия",
+    description: "Изделия в твёрдом переплёте для презентабельной подачи.",
+    image: "/images/hardcover.jpg",
+  },
+  {
+    name: "Коробки",
+    category: "Полиграфия",
+    description: "Коробки с индивидуальным оформлением и фирменной печатью.",
+    image: "/images/box.jpg",
+  },
+  {
+    name: "Блокноты",
+    category: "Полиграфия",
+    description: "Брендированные блокноты для офиса, подарков и продаж.",
+    image: "/images/notebook.jpg",
+  },
+  {
+    name: "Папки",
+    category: "Полиграфия",
+    description: "Фирменные папки для деловой документации и презентаций.",
+    image: "/images/folder.jpg",
+  },
+  {
+    name: "Магниты",
+    category: "Сувениры",
+    description: "Магниты с логотипом, изображением или рекламной подачей.",
+    image: "/images/magnet.jpg",
+  },
+  {
+    name: "Календари",
+    category: "Полиграфия",
+    description: "Настольные и настенные календари под фирменный стиль.",
+    image: "/images/calendar.jpg",
+  },
+  {
+    name: "Штампы",
+    category: "Бизнес",
+    description: "Штампы для бизнеса, офиса и документов с удобным заказом.",
+    image: "/images/stamp.jpg",
+  },
+  {
+    name: "Печати",
+    category: "Бизнес",
+    description: "Изготовление печатей с быстрыми сроками и понятным процессом.",
+    image: "/images/seal.jpg",
+  },
+];
+
+const reviews: Review[] = [
+  {
+    name: "Жанеля",
+    text: "Быстро ответили, хорошая цена, приятный продавец.",
+  },
+  {
+    name: "Нурсулу Идигеева",
+    text: "Отличная полиграфия! Нашла через 2ГИС, оперативно всё сделали и именно так, как я хотела.",
+  },
+  {
+    name: "Aray Y",
+    text: "Уже около года работаем с компанией. Всегда качественно, в срок и с вниманием к деталям.",
+  },
+];
+
+const categories = ["Все", "Полиграфия", "Сувениры", "Текстиль", "Бизнес"];
+
+const advantages = [
+  "Быстрые сроки",
+  "Качественная печать",
+  "Удобный заказ",
+  "Помощь с макетом",
+];
+
+const steps = [
+  "Вы пишете или звоните",
+  "Уточняем задачу и детали",
+  "Выполняем заказ",
+  "Выдаём готовую продукцию",
+];
+
+function ProductImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div className="mb-4 flex h-48 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 text-sm text-slate-500 dark:from-slate-800 dark:to-slate-900 dark:text-slate-400">
+        {alt}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="mb-4 h-48 w-full rounded-2xl object-cover"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [category, setCategory] = useState("Все");
-
-  const categories = [
-    "Все",
-    "Полиграфия",
-    "Сувениры",
-    "Текстиль",
-    "Бизнес",
-  ];
-
-  const products: Product[] = [
-    {
-      name: "Кружки",
-      category: "Сувениры",
-      description: "Печать на кружках для подарков, брендинга и корпоративных задач.",
-      image: "/images/mug.jpg",
-    },
-    {
-      name: "Бутылки",
-      category: "Сувениры",
-      description: "Стильные бутылки с нанесением логотипа или индивидуального дизайна.",
-      image: "/images/bottle.jpg",
-    },
-    {
-      name: "Термосы",
-      category: "Сувениры",
-      description: "Практичные термосы с персонализированной печатью.",
-      image: "/images/thermos.jpg",
-    },
-    {
-      name: "Лифлеты",
-      category: "Полиграфия",
-      description: "Информативные материалы для бизнеса, рекламы и мероприятий.",
-      image: "/images/leaflet.jpg",
-    },
-    {
-      name: "Флаера",
-      category: "Полиграфия",
-      description: "Яркие флаера для продвижения, акций и офлайн-рекламы.",
-      image: "/images/flyer.jpg",
-    },
-    {
-      name: "Конверты с нанесением",
-      category: "Полиграфия",
-      description: "Фирменные конверты с печатью для деловой и корпоративной переписки.",
-      image: "/images/envelope.jpg",
-    },
-    {
-      name: "Открытки",
-      category: "Полиграфия",
-      description: "Поздравительные, рекламные и брендированные открытки.",
-      image: "/images/postcard.jpg",
-    },
-    {
-      name: "Меню",
-      category: "Полиграфия",
-      description: "Меню стандартных и нестандартных размеров для кафе и ресторанов.",
-      image: "/images/menu.jpg",
-    },
-    {
-      name: "Книги",
-      category: "Полиграфия",
-      description: "Печать книг и многостраничной продукции с аккуратной сборкой.",
-      image: "/images/book.jpg",
-    },
-    {
-      name: "Наклейки",
-      category: "Полиграфия",
-      description: "Наклейки и стикеры разных форматов для упаковки и рекламы.",
-      image: "/images/sticker.jpg",
-    },
-    {
-      name: "Бейсболки",
-      category: "Текстиль",
-      description: "Нанесение логотипов и надписей на бейсболки.",
-      image: "/images/cap.jpg",
-    },
-    {
-      name: "Шопперы",
-      category: "Текстиль",
-      description: "Печать на шопперах для брендов, мероприятий и мерча.",
-      image: "/images/shopper.jpg",
-    },
-    {
-      name: "Нанесение на футболки",
-      category: "Текстиль",
-      description: "Печать и брендирование футболок для бизнеса и мероприятий.",
-      image: "/images/tshirt.jpg",
-    },
-    {
-      name: "Твёрдый переплёт",
-      category: "Полиграфия",
-      description: "Изделия в твёрдом переплёте для презентабельной подачи.",
-      image: "/images/hardcover.jpg",
-    },
-    {
-      name: "Коробки",
-      category: "Полиграфия",
-      description: "Коробки с индивидуальным оформлением и фирменной печатью.",
-      image: "/images/box.jpg",
-    },
-    {
-      name: "Блокноты",
-      category: "Полиграфия",
-      description: "Брендированные блокноты для офиса, подарков и продаж.",
-      image: "/images/notebook.jpg",
-    },
-    {
-      name: "Папки",
-      category: "Полиграфия",
-      description: "Фирменные папки для деловой документации и презентаций.",
-      image: "/images/folder.jpg",
-    },
-    {
-      name: "Магниты",
-      category: "Сувениры",
-      description: "Магниты с логотипом, изображением или рекламной подачей.",
-      image: "/images/magnet.jpg",
-    },
-    {
-      name: "Календари",
-      category: "Полиграфия",
-      description: "Настольные и настенные календари под фирменный стиль.",
-      image: "/images/calendar.jpg",
-    },
-    {
-      name: "Штампы",
-      category: "Бизнес",
-      description: "Штампы для бизнеса, офиса и документов с удобным заказом.",
-      image: "/images/stamp.jpg",
-    },
-    {
-      name: "Печати",
-      category: "Бизнес",
-      description: "Изготовление печатей с быстрыми сроками и понятным процессом.",
-      image: "/images/seal.jpg",
-    },
-  ];
 
   const filteredProducts =
     category === "Все"
       ? products
       : products.filter((product) => product.category === category);
-
-  const advantages = [
-    "Быстрые сроки",
-    "Качественная печать",
-    "Удобный заказ",
-    "Помощь с макетом",
-  ];
-
-  const reviews: Review[] = [
-    {
-      name: "Жанеля",
-      text: "Быстро ответили, хорошая цена, приятный продавец.",
-    },
-    {
-      name: "Нурсулу Идигеева",
-      text: "Отличная полиграфия! Нашла через 2ГИС, оперативно всё сделали и именно так, как я хотела.",
-    },
-    {
-      name: "Aray Y",
-      text: "Уже около года работаем с компанией. Всегда качественно, в срок и с вниманием к деталям.",
-    },
-  ];
-
-  const steps = [
-    "Вы пишете или звоните",
-    "Уточняем задачу и детали",
-    "Выполняем заказ",
-    "Выдаём готовую продукцию",
-  ];
 
   const pageClass = dark
     ? "min-h-screen bg-slate-950 text-white transition-colors duration-300"
@@ -382,11 +403,7 @@ export default function Home() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {filteredProducts.map((product) => (
             <div key={product.name} className={productCardClass}>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="mb-4 h-48 w-full rounded-2xl object-cover"
-              />
+              <ProductImage src={product.image} alt={product.name} />
 
               <div
                 className={
