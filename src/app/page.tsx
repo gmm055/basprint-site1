@@ -9,6 +9,11 @@ type Product = {
   image: string;
 };
 
+type Review = {
+  name: string;
+  text: string;
+};
+
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [category, setCategory] = useState("Все");
@@ -162,7 +167,7 @@ export default function Home() {
     "Помощь с макетом",
   ];
 
-  const reviews = [
+  const reviews: Review[] = [
     {
       name: "Жанеля",
       text: "Быстро ответили, хорошая цена, приятный продавец.",
@@ -219,13 +224,13 @@ export default function Home() {
       <header className={headerClass}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-yellow-400 font-bold text-white">
-              B
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 font-bold tracking-wide text-white">
+              BP
             </div>
             <div>
-              <div className="text-xl font-bold">Basprint</div>
+              <div className="text-xl font-semibold tracking-tight">Basprint</div>
               <div className={dark ? "text-xs text-slate-400" : "text-xs text-slate-500"}>
-                Сила в надежности в масштабе
+                Полиграфия и брендирование
               </div>
             </div>
           </div>
@@ -233,9 +238,6 @@ export default function Home() {
           <nav className="hidden gap-6 text-sm md:flex">
             <a href="#about" className="hover:opacity-70">
               О компании
-            </a>
-            <a href="#advantages" className="hover:opacity-70">
-              Преимущества
             </a>
             <a href="#catalog" className="hover:opacity-70">
               Каталог
@@ -314,40 +316,13 @@ export default function Home() {
                 Смотреть каталог
               </a>
             </div>
-
-            <div className="mt-8 flex flex-wrap gap-3 text-sm">
-              {["Быстро", "Качественно", "Удобно", "Для бизнеса и частных клиентов"].map(
-                (item) => (
-                  <span
-                    key={item}
-                    className={
-                      dark
-                        ? "rounded-full bg-slate-900 px-3 py-1 text-slate-300 ring-1 ring-slate-800"
-                        : "rounded-full bg-slate-50 px-3 py-1 text-slate-600 ring-1 ring-slate-200"
-                    }
-                  >
-                    {item}
-                  </span>
-                )
-              )}
-            </div>
           </div>
 
           <div className={sectionCardClass + " p-6 lg:p-8"}>
             <div className="grid gap-4 sm:grid-cols-2">
-              {advantages.map((item, index) => (
+              {advantages.map((item) => (
                 <div key={item} className={smallCardClass}>
-                  <div
-                    className={`mb-4 h-12 w-12 rounded-2xl ${
-                      index === 0
-                        ? "bg-gradient-to-br from-cyan-400 to-cyan-600"
-                        : index === 1
-                        ? "bg-gradient-to-br from-fuchsia-400 to-fuchsia-600"
-                        : index === 2
-                        ? "bg-gradient-to-br from-yellow-300 to-yellow-500"
-                        : "bg-gradient-to-br from-slate-400 to-slate-600"
-                    }`}
-                  />
+                  <div className="mb-4 h-12 w-12 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700" />
                   <div className="font-medium">{item}</div>
                   <div className={`mt-2 text-sm ${mutedTextClass}`}>
                     Сильная сторона Basprint, которую чувствует клиент.
@@ -455,20 +430,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12">
-        <h2 className="text-3xl font-bold">Как мы работаем</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-4">
-          {steps.map((step, index) => (
-            <div key={step} className={smallCardClass}>
-              <div className={dark ? "text-sm text-slate-400" : "text-sm text-slate-500"}>
-                Шаг {index + 1}
-              </div>
-              <div className="mt-2 font-medium">{step}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section id="reviews" className="mx-auto max-w-7xl px-6 py-12">
         <div>
           <h2 className="text-3xl font-bold">Отзывы клиентов</h2>
@@ -487,41 +448,6 @@ export default function Home() {
               <div className="mt-4 font-medium">{review.name}</div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-12">
-        <div
-          className={
-            dark
-              ? "rounded-[28px] bg-white px-8 py-10 text-slate-900"
-              : "rounded-[28px] bg-slate-900 px-8 py-10 text-white"
-          }
-        >
-          <h2 className="text-3xl font-bold">Готовы оформить заказ?</h2>
-          <p
-            className={
-              dark
-                ? "mt-3 max-w-2xl text-slate-700"
-                : "mt-3 max-w-2xl text-slate-300"
-            }
-          >
-            Напишите нам в WhatsApp, и мы быстро подскажем по срокам,
-            стоимости и лучшему решению под вашу задачу.
-          </p>
-
-          <a
-            href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
-            target="_blank"
-            rel="noreferrer"
-            className={
-              dark
-                ? "mt-6 inline-block rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:opacity-90"
-                : "mt-6 inline-block rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 transition hover:opacity-90"
-            }
-          >
-            Написать в WhatsApp
-          </a>
         </div>
       </section>
 
