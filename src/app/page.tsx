@@ -233,6 +233,36 @@ function Reveal({
   );
 }
 
+function ThemeLogo({ dark }: { dark: boolean }) {
+  const [showDark, setShowDark] = useState(dark);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      setShowDark(dark);
+    }, 120);
+    return () => window.clearTimeout(id);
+  }, [dark]);
+
+  return (
+    <div className="relative flex h-14 w-[150px] items-center sm:h-16 sm:w-[170px]">
+      <img
+        src="/logo-basprint-light.svg"
+        alt="Basprint"
+        className={`absolute left-0 top-1/2 h-full w-auto -translate-y-1/2 object-contain transition-all duration-300 ${
+          showDark ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      />
+      <img
+        src="/logo-basprint-dark.svg"
+        alt="Basprint"
+        className={`absolute left-0 top-1/2 h-full w-auto -translate-y-1/2 object-contain transition-all duration-300 ${
+          showDark ? "opacity-0 scale-95" : "opacity-100 scale-100"
+        }`}
+      />
+    </div>
+  );
+}
+
 export default function Home() {
   const [dark, setDark] = useState(true);
   const [category, setCategory] = useState("Все");
@@ -283,16 +313,14 @@ export default function Home() {
   return (
     <main id="top" className={pageClass}>
       <header className={headerClass}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <a href="#top" className="flex items-center transition hover:opacity-90">
-            <img
-              src={dark ? "/logo-basprint-light.svg" : "/logo-basprint-dark.svg"}
-              alt="Basprint"
-              className="h-full w-auto object-contain"
-            />
+            <div className="origin-left transition-transform duration-300 hover:scale-[1.02]">
+              <ThemeLogo dark={dark} />
+            </div>
           </a>
 
-          <nav className="hidden gap-6 text-sm md:flex">
+          <nav className="hidden items-center gap-5 text-sm md:flex">
             <a href="#about" className="transition hover:opacity-70">
               О компании
             </a>
@@ -321,7 +349,9 @@ export default function Home() {
               type="button"
               aria-label="Переключить тему"
             >
-              {dark ? "☀" : "☾"}
+              <span className="block transition-transform duration-300">
+                {dark ? "☀" : "☾"}
+              </span>
             </button>
 
             <a
