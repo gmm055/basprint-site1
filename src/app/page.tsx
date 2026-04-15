@@ -284,11 +284,11 @@ export default function Home() {
     <main id="top" className={pageClass}>
       <header className={headerClass}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="#top" className="flex items-center gap-3 transition hover:opacity-90">
+          <a href="#top" className="flex items-center transition hover:opacity-90">
             <img
               src={dark ? "/logo-basprint-light.svg" : "/logo-basprint-dark.svg"}
               alt="Basprint"
-              className="h-20 w-auto object-contain sm:h-24"
+              className="h-full w-auto object-contain"
             />
           </a>
 
