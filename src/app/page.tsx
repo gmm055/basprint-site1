@@ -181,13 +181,6 @@ const advantages = [
   "Помощь с макетом",
 ];
 
-const steps = [
-  "Вы пишете или звоните",
-  "Уточняем задачу и детали",
-  "Выполняем заказ",
-  "Выдаём готовую продукцию",
-];
-
 function Reveal({
   children,
   className = "",
@@ -231,33 +224,33 @@ export default function Home() {
       : products.filter((product) => product.category === category);
 
   const pageClass = dark
-    ? "min-h-screen bg-slate-950 text-white transition-colors duration-300"
-    : "min-h-screen bg-white text-slate-900 transition-colors duration-300";
+    ? "min-h-screen bg-[#06070A] text-white transition-colors duration-300"
+    : "min-h-screen bg-[#fafafa] text-slate-900 transition-colors duration-300";
 
   const headerClass = dark
-    ? "sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur"
-    : "sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur";
+    ? "sticky top-0 z-50 border-b border-white/10 bg-[#06070A]/80 backdrop-blur-xl"
+    : "sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl";
 
   const mutedTextClass = dark ? "text-slate-300" : "text-slate-600";
 
   const sectionCardClass = dark
-    ? "rounded-[28px] border border-slate-800 bg-slate-900"
-    : "rounded-[28px] border border-slate-200 bg-white";
+    ? "rounded-[32px] border border-white/10 bg-white/5"
+    : "rounded-[32px] border border-slate-200 bg-white";
 
-  const smallCardClass = dark
-    ? "rounded-2xl border border-slate-800 bg-slate-900 p-5 shadow-sm"
-    : "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm";
+  const softCardClass = dark
+    ? "rounded-[24px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
+    : "rounded-[24px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.06)]";
 
   const productCardClass = dark
-    ? "group rounded-[24px] border border-slate-800 bg-slate-900 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-700 hover:shadow-xl"
-    : "group rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl";
+    ? "group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1.5 hover:border-white/20 hover:bg-white/[0.06]"
+    : "group rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-slate-300 hover:shadow-[0_14px_40px_rgba(15,23,42,0.10)]";
 
   const primaryButtonClass = dark
     ? "rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 transition hover:scale-[1.02] hover:opacity-90"
     : "rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:scale-[1.02] hover:opacity-90";
 
   const secondaryButtonClass = dark
-    ? "rounded-2xl border border-slate-700 px-6 py-3 font-medium transition hover:bg-slate-900"
+    ? "rounded-2xl border border-white/15 px-6 py-3 font-medium transition hover:bg-white/5"
     : "rounded-2xl border border-slate-300 px-6 py-3 font-medium transition hover:bg-slate-50";
 
   return (
@@ -265,7 +258,7 @@ export default function Home() {
       <header className={headerClass}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 font-bold tracking-wide text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 font-bold tracking-wide text-white shadow-lg">
               BP
             </div>
             <div>
@@ -299,7 +292,7 @@ export default function Home() {
               onClick={() => setDark(!dark)}
               className={
                 dark
-                  ? "rounded-xl border border-slate-700 px-3 py-2 text-sm transition hover:bg-slate-900"
+                  ? "rounded-xl border border-white/15 px-3 py-2 text-sm transition hover:bg-white/5"
                   : "rounded-xl border border-slate-300 px-3 py-2 text-sm transition hover:bg-slate-50"
               }
               type="button"
@@ -324,27 +317,27 @@ export default function Home() {
       </header>
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal>
             <div>
               <div
                 className={
                   dark
-                    ? "inline-flex rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-sm text-slate-300"
+                    ? "inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-sm text-slate-300"
                     : "inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600"
                 }
               >
                 Basprint · Полиграфия, сувениры, текстиль и бизнес-продукция
               </div>
 
-              <h1 className="mt-6 text-4xl font-bold tracking-tight md:text-6xl">
+              <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.05]">
                 Печать, которая делает ваш бренд заметнее
               </h1>
 
               <p className={`mt-5 max-w-2xl text-lg leading-8 ${mutedTextClass}`}>
                 От флаеров, коробок и календарей до кружек, футболок, шопперов,
                 штампов и печатей — Basprint помогает быстро оформить заказ и
-                получить качественный результат.
+                получить качественный результат без лишних сложностей.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -361,18 +354,45 @@ export default function Home() {
                   Смотреть каталог
                 </a>
               </div>
+
+              <div className="mt-8 flex flex-wrap gap-3 text-sm">
+                {["Быстро", "Качественно", "Удобно", "Для бизнеса и частных клиентов"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className={
+                        dark
+                          ? "rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-300"
+                          : "rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600"
+                      }
+                    >
+                      {item}
+                    </span>
+                  )
+                )}
+              </div>
             </div>
           </Reveal>
 
           <Reveal>
             <div className={sectionCardClass + " p-6 lg:p-8"}>
               <div className="grid gap-4 sm:grid-cols-2">
-                {advantages.map((item) => (
-                  <div key={item} className={smallCardClass}>
-                    <div className="mb-4 h-12 w-12 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700" />
+                {advantages.map((item, index) => (
+                  <div key={item} className={softCardClass}>
+                    <div
+                      className={`mb-4 h-12 w-12 rounded-2xl ${
+                        index === 0
+                          ? "bg-gradient-to-br from-cyan-400 to-cyan-600"
+                          : index === 1
+                          ? "bg-gradient-to-br from-fuchsia-400 to-fuchsia-600"
+                          : index === 2
+                          ? "bg-gradient-to-br from-yellow-300 to-yellow-500"
+                          : "bg-gradient-to-br from-slate-500 to-slate-700"
+                      }`}
+                    />
                     <div className="font-medium">{item}</div>
                     <div className={`mt-2 text-sm ${mutedTextClass}`}>
-                      Сильная сторона Basprint, которую чувствует клиент.
+                      Сильная сторона Basprint, которую сразу чувствует клиент.
                     </div>
                   </div>
                 ))}
@@ -384,8 +404,8 @@ export default function Home() {
 
       <section id="about" className="mx-auto max-w-7xl px-6 py-12">
         <Reveal>
-          <div className={sectionCardClass + " p-8"}>
-            <h2 className="text-3xl font-bold">О компании</h2>
+          <div className={sectionCardClass + " p-8 lg:p-10"}>
+            <h2 className="text-3xl font-semibold tracking-tight">О компании</h2>
             <p className={`mt-4 max-w-3xl leading-7 ${mutedTextClass}`}>
               Basprint — полиграфическая компания, на которую можно положиться.
               Работаем с бизнесом и частными клиентами, выполняем заказы разного
@@ -399,7 +419,7 @@ export default function Home() {
       <section id="catalog" className="mx-auto max-w-7xl px-6 py-12">
         <Reveal>
           <div>
-            <h2 className="text-3xl font-bold">Каталог товаров и услуг</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">Каталог товаров и услуг</h2>
             <p className={`mt-2 ${mutedTextClass}`}>
               Все основные направления Basprint — в одном месте.
             </p>
@@ -421,7 +441,7 @@ export default function Home() {
                         ? "rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-900"
                         : "rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white"
                       : dark
-                      ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium transition hover:bg-slate-900"
+                      ? "rounded-full border border-white/15 px-4 py-2 text-sm font-medium transition hover:bg-white/5"
                       : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium transition hover:bg-slate-50"
                   }
                   type="button"
@@ -434,8 +454,8 @@ export default function Home() {
         </Reveal>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {filteredProducts.map((product, index) => (
-            <Reveal key={product.name} className={`delay-[${index * 20}ms]`}>
+          {filteredProducts.map((product) => (
+            <Reveal key={product.name}>
               <div className={productCardClass}>
                 <div
                   className={
@@ -449,7 +469,7 @@ export default function Home() {
                   <div
                     className={
                       dark
-                        ? "inline-flex rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300"
+                        ? "inline-flex rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300"
                         : "inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600"
                     }
                   >
@@ -500,13 +520,13 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-6 py-12">
         <Reveal>
-          <h2 className="text-3xl font-bold">Как мы работаем</h2>
+          <h2 className="text-3xl font-semibold tracking-tight">Как мы работаем</h2>
         </Reveal>
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
           {steps.map((step, index) => (
             <Reveal key={step}>
-              <div className={smallCardClass}>
+              <div className={softCardClass}>
                 <div className={dark ? "text-sm text-slate-400" : "text-sm text-slate-500"}>
                   Шаг {index + 1}
                 </div>
@@ -520,7 +540,7 @@ export default function Home() {
       <section id="reviews" className="mx-auto max-w-7xl px-6 py-12">
         <Reveal>
           <div>
-            <h2 className="text-3xl font-bold">Отзывы клиентов</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">Отзывы клиентов</h2>
             <p className={`mt-2 ${mutedTextClass}`}>
               Реальные отзывы клиентов Basprint.
             </p>
@@ -530,7 +550,7 @@ export default function Home() {
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {reviews.map((review) => (
             <Reveal key={review.name}>
-              <div className={smallCardClass}>
+              <div className={softCardClass}>
                 <div className="mb-3 text-yellow-500">★★★★★</div>
                 <p className={`text-sm leading-6 ${mutedTextClass}`}>
                   {review.text}
@@ -545,7 +565,7 @@ export default function Home() {
       <section id="faq" className="mx-auto max-w-7xl px-6 py-12">
         <Reveal>
           <div>
-            <h2 className="text-3xl font-bold">Частые вопросы</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">Частые вопросы</h2>
             <p className={`mt-2 ${mutedTextClass}`}>
               Коротко о самом важном перед заказом.
             </p>
@@ -555,7 +575,7 @@ export default function Home() {
         <div className="mt-8 space-y-4">
           {faqs.map((faq, index) => (
             <Reveal key={faq.question}>
-              <div className={smallCardClass}>
+              <div className={softCardClass}>
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
@@ -580,7 +600,7 @@ export default function Home() {
         <Reveal>
           <div className={sectionCardClass + " grid gap-6 p-8 md:grid-cols-2"}>
             <div>
-              <h2 className="text-3xl font-bold">Контакты</h2>
+              <h2 className="text-3xl font-semibold tracking-tight">Контакты</h2>
               <div className={`mt-4 space-y-2 ${mutedTextClass}`}>
                 <p>Телефон: +7 702 405 6954</p>
                 <p>Адрес: пр. Кабанбай батыра 48/1</p>
@@ -627,7 +647,7 @@ export default function Home() {
       <footer
         className={
           dark
-            ? "border-t border-slate-800 py-8"
+            ? "border-t border-white/10 py-8"
             : "border-t border-slate-200 py-8"
         }
       >
