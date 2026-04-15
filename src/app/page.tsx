@@ -175,10 +175,33 @@ const faqs: Faq[] = [
 const categories = ["Все", "Полиграфия", "Сувениры", "Текстиль", "Бизнес"];
 
 const advantages = [
-  "Быстрые сроки",
-  "Качественная печать",
-  "Удобный заказ",
-  "Помощь с макетом",
+  {
+    title: "Быстрые сроки",
+    text: "Оперативно подскажем сроки и не будем тянуть с ответом.",
+    icon: "⚡",
+  },
+  {
+    title: "Качественная печать",
+    text: "Аккуратный результат и внимание к деталям в каждом заказе.",
+    icon: "✦",
+  },
+  {
+    title: "Удобный заказ",
+    text: "Клиенту легко: быстрое общение и понятный путь к результату.",
+    icon: "✓",
+  },
+  {
+    title: "Помощь с макетом",
+    text: "Поможем подготовить макет, если его ещё нет.",
+    icon: "✎",
+  },
+];
+
+const steps = [
+  "Вы пишете или звоните",
+  "Уточняем задачу и детали",
+  "Выполняем заказ",
+  "Выдаём готовую продукцию",
 ];
 
 function Reveal({
@@ -207,7 +230,7 @@ function Reveal({
 }
 
 export default function Home() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [category, setCategory] = useState("Все");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -225,7 +248,7 @@ export default function Home() {
 
   const pageClass = dark
     ? "min-h-screen bg-[#06070A] text-white transition-colors duration-300"
-    : "min-h-screen bg-[#fafafa] text-slate-900 transition-colors duration-300";
+    : "min-h-screen bg-[#f7f8fb] text-slate-900 transition-colors duration-300";
 
   const headerClass = dark
     ? "sticky top-0 z-50 border-b border-white/10 bg-[#06070A]/80 backdrop-blur-xl"
@@ -234,40 +257,43 @@ export default function Home() {
   const mutedTextClass = dark ? "text-slate-300" : "text-slate-600";
 
   const sectionCardClass = dark
-    ? "rounded-[32px] border border-white/10 bg-white/5"
-    : "rounded-[32px] border border-slate-200 bg-white";
+    ? "rounded-[28px] border border-white/10 bg-white/[0.04]"
+    : "rounded-[28px] border border-slate-200 bg-white";
 
   const softCardClass = dark
-    ? "rounded-[24px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
-    : "rounded-[24px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.06)]";
+    ? "rounded-[24px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
+    : "rounded-[24px] border border-slate-200 bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)]";
 
   const productCardClass = dark
-    ? "group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1.5 hover:border-white/20 hover:bg-white/[0.06]"
-    : "group rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-slate-300 hover:shadow-[0_14px_40px_rgba(15,23,42,0.10)]";
+    ? "group rounded-[24px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1.5 hover:border-white/20 hover:bg-white/[0.06]"
+    : "group rounded-[24px] border border-slate-200 bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-slate-300 hover:shadow-[0_14px_40px_rgba(15,23,42,0.10)]";
 
   const primaryButtonClass = dark
-    ? "rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 transition hover:scale-[1.02] hover:opacity-90"
-    : "rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:scale-[1.02] hover:opacity-90";
+    ? "w-full sm:w-auto rounded-2xl bg-white px-6 py-4 font-medium text-slate-900 transition hover:scale-[1.02] hover:opacity-90 active:scale-95"
+    : "w-full sm:w-auto rounded-2xl bg-slate-900 px-6 py-4 font-medium text-white transition hover:scale-[1.02] hover:opacity-90 active:scale-95";
 
   const secondaryButtonClass = dark
-    ? "rounded-2xl border border-white/15 px-6 py-3 font-medium transition hover:bg-white/5"
-    : "rounded-2xl border border-slate-300 px-6 py-3 font-medium transition hover:bg-slate-50";
+    ? "w-full sm:w-auto rounded-2xl border border-white/15 px-6 py-4 font-medium transition hover:bg-white/5 active:scale-95"
+    : "w-full sm:w-auto rounded-2xl border border-slate-300 px-6 py-4 font-medium transition hover:bg-slate-50 active:scale-95";
 
   return (
-    <main className={pageClass}>
+    <main id="top" className={pageClass}>
       <header className={headerClass}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 font-bold tracking-wide text-white shadow-lg">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+          <a href="#top" className="flex items-center gap-3 transition hover:opacity-90">
+            <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500 font-bold text-white shadow-lg">
               BP
             </div>
+
             <div>
-              <div className="text-xl font-semibold tracking-tight">Basprint</div>
+              <div className="text-lg font-semibold tracking-tight sm:text-xl">
+                Basprint
+              </div>
               <div className={dark ? "text-xs text-slate-400" : "text-xs text-slate-500"}>
-                Полиграфия и брендирование
+                печать и брендирование
               </div>
             </div>
-          </div>
+          </a>
 
           <nav className="hidden gap-6 text-sm md:flex">
             <a href="#about" className="transition hover:opacity-70">
@@ -287,7 +313,7 @@ export default function Home() {
             </a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setDark(!dark)}
               className={
@@ -296,8 +322,9 @@ export default function Home() {
                   : "rounded-xl border border-slate-300 px-3 py-2 text-sm transition hover:bg-slate-50"
               }
               type="button"
+              aria-label="Переключить тему"
             >
-              {dark ? "☀️" : "🌙"}
+              {dark ? "☀" : "☾"}
             </button>
 
             <a
@@ -316,8 +343,13 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-[340px] w-[340px] rounded-full bg-purple-500/20 blur-3xl" />
+        </div>
+
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <Reveal>
             <div>
               <div
@@ -330,17 +362,17 @@ export default function Home() {
                 Basprint · Полиграфия, сувениры, текстиль и бизнес-продукция
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.05]">
+              <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl md:leading-[1.05]">
                 Печать, которая делает ваш бренд заметнее
               </h1>
 
-              <p className={`mt-5 max-w-2xl text-lg leading-8 ${mutedTextClass}`}>
+              <p className={`mt-5 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 ${mutedTextClass}`}>
                 От флаеров, коробок и календарей до кружек, футболок, шопперов,
                 штампов и печатей — Basprint помогает быстро оформить заказ и
                 получить качественный результат без лишних сложностей.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
                   target="_blank"
@@ -375,12 +407,12 @@ export default function Home() {
           </Reveal>
 
           <Reveal>
-            <div className={sectionCardClass + " p-6 lg:p-8"}>
+            <div className={sectionCardClass + " p-5 sm:p-6 lg:p-8"}>
               <div className="grid gap-4 sm:grid-cols-2">
                 {advantages.map((item, index) => (
-                  <div key={item} className={softCardClass}>
+                  <div key={item.title} className={softCardClass}>
                     <div
-                      className={`mb-4 h-12 w-12 rounded-2xl ${
+                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-semibold text-white ${
                         index === 0
                           ? "bg-gradient-to-br from-cyan-400 to-cyan-600"
                           : index === 1
@@ -389,10 +421,12 @@ export default function Home() {
                           ? "bg-gradient-to-br from-yellow-300 to-yellow-500"
                           : "bg-gradient-to-br from-slate-500 to-slate-700"
                       }`}
-                    />
-                    <div className="font-medium">{item}</div>
-                    <div className={`mt-2 text-sm ${mutedTextClass}`}>
-                      Сильная сторона Basprint, которую сразу чувствует клиент.
+                    >
+                      {item.icon}
+                    </div>
+                    <div className="font-medium">{item.title}</div>
+                    <div className={`mt-2 text-sm leading-6 ${mutedTextClass}`}>
+                      {item.text}
                     </div>
                   </div>
                 ))}
@@ -402,9 +436,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="mx-auto max-w-7xl px-6 py-12">
+      <section id="about" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
-          <div className={sectionCardClass + " p-8 lg:p-10"}>
+          <div className={sectionCardClass + " p-6 sm:p-8 lg:p-10"}>
             <h2 className="text-3xl font-semibold tracking-tight">О компании</h2>
             <p className={`mt-4 max-w-3xl leading-7 ${mutedTextClass}`}>
               Basprint — полиграфическая компания, на которую можно положиться.
@@ -416,7 +450,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section id="catalog" className="mx-auto max-w-7xl px-6 py-12">
+      <section id="catalog" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
           <div>
             <h2 className="text-3xl font-semibold tracking-tight">Каталог товаров и услуг</h2>
@@ -489,7 +523,7 @@ export default function Home() {
                   {product.description}
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <a
                     href={`https://wa.me/77024056954?text=${encodeURIComponent(
                       `Здравствуйте! Хочу заказать в Basprint: ${product.name}`
@@ -518,7 +552,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
           <h2 className="text-3xl font-semibold tracking-tight">Как мы работаем</h2>
         </Reveal>
@@ -537,7 +571,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="reviews" className="mx-auto max-w-7xl px-6 py-12">
+      <section id="reviews" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
           <div>
             <h2 className="text-3xl font-semibold tracking-tight">Отзывы клиентов</h2>
@@ -562,7 +596,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto max-w-7xl px-6 py-12">
+      <section id="faq" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
           <div>
             <h2 className="text-3xl font-semibold tracking-tight">Частые вопросы</h2>
@@ -596,9 +630,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contacts" className="mx-auto max-w-7xl px-6 py-12">
+      <section id="contacts" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Reveal>
-          <div className={sectionCardClass + " grid gap-6 p-8 md:grid-cols-2"}>
+          <div className={sectionCardClass + " grid gap-6 p-6 sm:p-8 md:grid-cols-2"}>
             <div>
               <h2 className="text-3xl font-semibold tracking-tight">Контакты</h2>
               <div className={`mt-4 space-y-2 ${mutedTextClass}`}>
@@ -639,7 +673,7 @@ export default function Home() {
         href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-5 right-5 z-50 rounded-full bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-lg transition hover:scale-105 hover:opacity-90 dark:bg-white dark:text-slate-900"
+        className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-medium text-white shadow-lg transition active:scale-95 hover:opacity-90"
       >
         WhatsApp
       </a>
@@ -654,8 +688,8 @@ export default function Home() {
         <div
           className={
             dark
-              ? "mx-auto max-w-7xl px-6 text-sm text-slate-400"
-              : "mx-auto max-w-7xl px-6 text-sm text-slate-500"
+              ? "mx-auto max-w-7xl px-4 text-sm text-slate-400 sm:px-6"
+              : "mx-auto max-w-7xl px-4 text-sm text-slate-500 sm:px-6"
           }
         >
           © Basprint — Полиграфия для бизнеса и частных клиентов
