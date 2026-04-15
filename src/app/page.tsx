@@ -178,22 +178,26 @@ const advantages = [
   {
     title: "Быстрые сроки",
     text: "Оперативно подскажем сроки и не будем тянуть с ответом.",
-    icon: "⚡",
+    icon: "⏱",
+    gradient: "from-cyan-400 to-cyan-600",
   },
   {
     title: "Качественная печать",
     text: "Аккуратный результат и внимание к деталям в каждом заказе.",
     icon: "✦",
+    gradient: "from-fuchsia-400 to-fuchsia-600",
   },
   {
     title: "Удобный заказ",
     text: "Клиенту легко: быстрое общение и понятный путь к результату.",
     icon: "✓",
+    gradient: "from-yellow-300 to-yellow-500",
   },
   {
     title: "Помощь с макетом",
     text: "Поможем подготовить макет, если его ещё нет.",
     icon: "✎",
+    gradient: "from-slate-500 to-slate-700",
   },
 ];
 
@@ -281,17 +285,12 @@ export default function Home() {
       <header className={headerClass}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
           <a href="#top" className="flex items-center gap-3 transition hover:opacity-90">
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500 font-bold text-white shadow-lg">
-              BP
-            </div>
-
-            <div>
-              <div className="text-lg font-semibold tracking-tight sm:text-xl">
-                Basprint
-              </div>
-              <div className={dark ? "text-xs text-slate-400" : "text-xs text-slate-500"}>
-                печать и брендирование
-              </div>
+            <div className="rounded-2xl bg-white px-3 py-2 shadow-sm">
+              <img
+                src="/logo-basprint.png"
+                alt="Basprint"
+                className="h-8 w-auto object-contain sm:h-10"
+              />
             </div>
           </a>
 
@@ -409,18 +408,10 @@ export default function Home() {
           <Reveal>
             <div className={sectionCardClass + " p-5 sm:p-6 lg:p-8"}>
               <div className="grid gap-4 sm:grid-cols-2">
-                {advantages.map((item, index) => (
+                {advantages.map((item) => (
                   <div key={item.title} className={softCardClass}>
                     <div
-                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-semibold text-white ${
-                        index === 0
-                          ? "bg-gradient-to-br from-cyan-400 to-cyan-600"
-                          : index === 1
-                          ? "bg-gradient-to-br from-fuchsia-400 to-fuchsia-600"
-                          : index === 2
-                          ? "bg-gradient-to-br from-yellow-300 to-yellow-500"
-                          : "bg-gradient-to-br from-slate-500 to-slate-700"
-                      }`}
+                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-semibold text-white bg-gradient-to-br ${item.gradient}`}
                     >
                       {item.icon}
                     </div>
@@ -616,14 +607,28 @@ export default function Home() {
                   className="flex w-full items-center justify-between gap-4 text-left"
                 >
                   <span className="font-medium">{faq.question}</span>
-                  <span className="text-xl">{openFaq === index ? "−" : "+"}</span>
+                  <span
+                    className={`text-xl transition-transform duration-300 ${
+                      openFaq === index ? "rotate-45" : "rotate-0"
+                    }`}
+                  >
+                    +
+                  </span>
                 </button>
 
-                {openFaq === index ? (
-                  <p className={`mt-4 text-sm leading-6 ${mutedTextClass}`}>
-                    {faq.answer}
-                  </p>
-                ) : null}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    openFaq === index
+                      ? "mt-4 grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className={`text-sm leading-6 ${mutedTextClass}`}>
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             </Reveal>
           ))}
