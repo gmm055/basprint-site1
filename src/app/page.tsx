@@ -7,6 +7,7 @@ type Product = {
   category: string;
   description: string;
   tag?: string;
+  icon: string;
 };
 
 type Review = {
@@ -25,112 +26,133 @@ const products: Product[] = [
     category: "Сувениры",
     description: "Печать на кружках для подарков, брендинга и корпоративных задач.",
     tag: "Популярно",
+    icon: "☕",
   },
   {
     name: "Бутылки",
     category: "Сувениры",
     description: "Стильные бутылки с нанесением логотипа или индивидуального дизайна.",
+    icon: "🧴",
   },
   {
     name: "Термосы",
     category: "Сувениры",
     description: "Практичные термосы с персонализированной печатью.",
+    icon: "🥤",
   },
   {
     name: "Лифлеты",
     category: "Полиграфия",
     description: "Информативные материалы для бизнеса, рекламы и мероприятий.",
+    icon: "📄",
   },
   {
     name: "Флаера",
     category: "Полиграфия",
     description: "Яркие флаера для продвижения, акций и офлайн-рекламы.",
     tag: "Частый заказ",
+    icon: "📃",
   },
   {
     name: "Конверты с нанесением",
     category: "Полиграфия",
     description: "Фирменные конверты с печатью для деловой и корпоративной переписки.",
+    icon: "✉️",
   },
   {
     name: "Открытки",
     category: "Полиграфия",
     description: "Поздравительные, рекламные и брендированные открытки.",
+    icon: "💌",
   },
   {
     name: "Меню",
     category: "Полиграфия",
     description: "Меню стандартных и нестандартных размеров для кафе и ресторанов.",
+    icon: "📘",
   },
   {
     name: "Книги",
     category: "Полиграфия",
     description: "Печать книг и многостраничной продукции с аккуратной сборкой.",
+    icon: "📚",
   },
   {
     name: "Наклейки",
     category: "Полиграфия",
     description: "Наклейки и стикеры разных форматов для упаковки и рекламы.",
     tag: "Для бизнеса",
+    icon: "🏷️",
   },
   {
     name: "Бейсболки",
     category: "Текстиль",
     description: "Нанесение логотипов и надписей на бейсболки.",
+    icon: "🧢",
   },
   {
     name: "Шопперы",
     category: "Текстиль",
     description: "Печать на шопперах для брендов, мероприятий и мерча.",
     tag: "Тренд",
+    icon: "👜",
   },
   {
     name: "Нанесение на футболки",
     category: "Текстиль",
     description: "Печать и брендирование футболок для бизнеса и мероприятий.",
     tag: "Популярно",
+    icon: "👕",
   },
   {
     name: "Твёрдый переплёт",
     category: "Полиграфия",
     description: "Изделия в твёрдом переплёте для презентабельной подачи.",
+    icon: "📕",
   },
   {
     name: "Коробки",
     category: "Полиграфия",
     description: "Коробки с индивидуальным оформлением и фирменной печатью.",
     tag: "Для бренда",
+    icon: "📦",
   },
   {
     name: "Блокноты",
     category: "Полиграфия",
     description: "Брендированные блокноты для офиса, подарков и продаж.",
+    icon: "📓",
   },
   {
     name: "Папки",
     category: "Полиграфия",
     description: "Фирменные папки для деловой документации и презентаций.",
+    icon: "📁",
   },
   {
     name: "Магниты",
     category: "Сувениры",
     description: "Магниты с логотипом, изображением или рекламной подачей.",
+    icon: "🧲",
   },
   {
     name: "Календари",
     category: "Полиграфия",
     description: "Настольные и настенные календари под фирменный стиль.",
+    icon: "📅",
   },
   {
     name: "Штампы",
     category: "Бизнес",
     description: "Штампы для бизнеса, офиса и документов с удобным заказом.",
+    icon: "🖋️",
   },
   {
     name: "Печати",
     category: "Бизнес",
     description: "Изготовление печатей с быстрыми сроками и понятным процессом.",
     tag: "Срочно",
+    icon: "🔖",
   },
 ];
 
@@ -234,29 +256,20 @@ function Reveal({
 }
 
 function ThemeLogo({ dark }: { dark: boolean }) {
-  const [showDark, setShowDark] = useState(dark);
-
-  useEffect(() => {
-    const id = window.setTimeout(() => {
-      setShowDark(dark);
-    }, 120);
-    return () => window.clearTimeout(id);
-  }, [dark]);
-
   return (
-    <div className="relative flex h-14 w-[150px] items-center sm:h-16 sm:w-[170px]">
+    <div className="relative h-14 w-[170px] sm:h-16 sm:w-[190px]">
       <img
         src="/logo-basprint-light.svg"
         alt="Basprint"
-        className={`absolute left-0 top-1/2 h-full w-auto -translate-y-1/2 object-contain transition-all duration-300 ${
-          showDark ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        className={`absolute inset-0 h-full w-full object-contain transition-all duration-300 ${
+          dark ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       />
       <img
         src="/logo-basprint-dark.svg"
         alt="Basprint"
-        className={`absolute left-0 top-1/2 h-full w-auto -translate-y-1/2 object-contain transition-all duration-300 ${
-          showDark ? "opacity-0 scale-95" : "opacity-100 scale-100"
+        className={`absolute inset-0 h-full w-full object-contain transition-all duration-300 ${
+          dark ? "opacity-0 scale-95" : "opacity-100 scale-100"
         }`}
       />
     </div>
@@ -267,6 +280,7 @@ export default function Home() {
   const [dark, setDark] = useState(true);
   const [category, setCategory] = useState("Все");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -349,9 +363,7 @@ export default function Home() {
               type="button"
               aria-label="Переключить тему"
             >
-              <span className="block transition-transform duration-300">
-                {dark ? "☀" : "☾"}
-              </span>
+              {dark ? "☀" : "☾"}
             </button>
 
             <a
@@ -360,9 +372,54 @@ export default function Home() {
               rel="noreferrer"
               className={
                 dark
-                  ? "rounded-2xl bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:opacity-90"
-                  : "rounded-2xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                  ? "hidden rounded-2xl bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:opacity-90 sm:inline-flex"
+                  : "hidden rounded-2xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 sm:inline-flex"
               }
+            >
+              WhatsApp
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={
+                dark
+                  ? "inline-flex rounded-xl border border-white/15 px-3 py-2 text-sm md:hidden"
+                  : "inline-flex rounded-xl border border-slate-300 px-3 py-2 text-sm md:hidden"
+              }
+              aria-label="Открыть меню"
+            >
+              ☰
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={`overflow-hidden transition-all duration-300 md:hidden ${
+            menuOpen ? "max-h-96 border-t" : "max-h-0"
+          } ${dark ? "border-white/10" : "border-slate-200"}`}
+        >
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:px-6">
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              О компании
+            </a>
+            <a href="#catalog" onClick={() => setMenuOpen(false)}>
+              Каталог
+            </a>
+            <a href="#reviews" onClick={() => setMenuOpen(false)}>
+              Отзывы
+            </a>
+            <a href="#faq" onClick={() => setMenuOpen(false)}>
+              FAQ
+            </a>
+            <a href="#contacts" onClick={() => setMenuOpen(false)}>
+              Контакты
+            </a>
+            <a
+              href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
+              target="_blank"
+              rel="noreferrer"
+              className={primaryButtonClass}
             >
               WhatsApp
             </a>
@@ -513,10 +570,12 @@ export default function Home() {
                 <div
                   className={
                     dark
-                      ? "mb-4 h-40 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900"
-                      : "mb-4 h-40 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100"
+                      ? "mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 text-3xl transition group-hover:scale-110"
+                      : "mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-slate-100 text-3xl transition group-hover:scale-110"
                   }
-                />
+                >
+                  {product.icon}
+                </div>
 
                 <div className="mb-3 flex items-center justify-between gap-2">
                   <div
