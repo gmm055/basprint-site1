@@ -1,13 +1,41 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  BookOpen,
+  CalendarDays,
+  Coffee,
+  FileImage,
+  FileText,
+  Files,
+  FolderOpen,
+  Gift,
+  GraduationCap,
+  ImageIcon,
+  Mail,
+  MapPinned,
+  Menu,
+  NotebookPen,
+  Package,
+  Phone,
+  Printer,
+  ScrollText,
+  Send,
+  Shirt,
+  ShoppingBag,
+  Sparkles,
+  Stamp,
+  Sticker,
+  TimerReset,
+  X,
+} from "lucide-react";
 
 type Product = {
   name: string;
   category: string;
   description: string;
   tag?: string;
-  icon: string;
+  icon: React.ReactNode;
 };
 
 type Review = {
@@ -26,133 +54,133 @@ const products: Product[] = [
     category: "Сувениры",
     description: "Печать на кружках для подарков, брендинга и корпоративных задач.",
     tag: "Популярно",
-    icon: "☕",
+    icon: <Coffee size={26} />,
   },
   {
     name: "Бутылки",
     category: "Сувениры",
     description: "Стильные бутылки с нанесением логотипа или индивидуального дизайна.",
-    icon: "🧴",
+    icon: <Gift size={26} />,
   },
   {
     name: "Термосы",
     category: "Сувениры",
     description: "Практичные термосы с персонализированной печатью.",
-    icon: "🥤",
+    icon: <Sparkles size={26} />,
   },
   {
     name: "Лифлеты",
     category: "Полиграфия",
     description: "Информативные материалы для бизнеса, рекламы и мероприятий.",
-    icon: "📄",
+    icon: <FileText size={26} />,
   },
   {
     name: "Флаера",
     category: "Полиграфия",
     description: "Яркие флаера для продвижения, акций и офлайн-рекламы.",
     tag: "Частый заказ",
-    icon: "📃",
+    icon: <ScrollText size={26} />,
   },
   {
     name: "Конверты с нанесением",
     category: "Полиграфия",
     description: "Фирменные конверты с печатью для деловой и корпоративной переписки.",
-    icon: "✉️",
+    icon: <Mail size={26} />,
   },
   {
     name: "Открытки",
     category: "Полиграфия",
     description: "Поздравительные, рекламные и брендированные открытки.",
-    icon: "💌",
+    icon: <FileImage size={26} />,
   },
   {
     name: "Меню",
     category: "Полиграфия",
     description: "Меню стандартных и нестандартных размеров для кафе и ресторанов.",
-    icon: "📘",
+    icon: <BookOpen size={26} />,
   },
   {
     name: "Книги",
     category: "Полиграфия",
     description: "Печать книг и многостраничной продукции с аккуратной сборкой.",
-    icon: "📚",
+    icon: <GraduationCap size={26} />,
   },
   {
     name: "Наклейки",
     category: "Полиграфия",
     description: "Наклейки и стикеры разных форматов для упаковки и рекламы.",
     tag: "Для бизнеса",
-    icon: "🏷️",
+    icon: <Sticker size={26} />,
   },
   {
     name: "Бейсболки",
     category: "Текстиль",
     description: "Нанесение логотипов и надписей на бейсболки.",
-    icon: "🧢",
+    icon: <Sparkles size={26} />,
   },
   {
     name: "Шопперы",
     category: "Текстиль",
     description: "Печать на шопперах для брендов, мероприятий и мерча.",
     tag: "Тренд",
-    icon: "👜",
+    icon: <ShoppingBag size={26} />,
   },
   {
     name: "Нанесение на футболки",
     category: "Текстиль",
     description: "Печать и брендирование футболок для бизнеса и мероприятий.",
     tag: "Популярно",
-    icon: "👕",
+    icon: <Shirt size={26} />,
   },
   {
     name: "Твёрдый переплёт",
     category: "Полиграфия",
     description: "Изделия в твёрдом переплёте для презентабельной подачи.",
-    icon: "📕",
+    icon: <Files size={26} />,
   },
   {
     name: "Коробки",
     category: "Полиграфия",
     description: "Коробки с индивидуальным оформлением и фирменной печатью.",
     tag: "Для бренда",
-    icon: "📦",
+    icon: <Package size={26} />,
   },
   {
     name: "Блокноты",
     category: "Полиграфия",
     description: "Брендированные блокноты для офиса, подарков и продаж.",
-    icon: "📓",
+    icon: <NotebookPen size={26} />,
   },
   {
     name: "Папки",
     category: "Полиграфия",
     description: "Фирменные папки для деловой документации и презентаций.",
-    icon: "📁",
+    icon: <FolderOpen size={26} />,
   },
   {
     name: "Магниты",
     category: "Сувениры",
     description: "Магниты с логотипом, изображением или рекламной подачей.",
-    icon: "🧲",
+    icon: <ImageIcon size={26} />,
   },
   {
     name: "Календари",
     category: "Полиграфия",
     description: "Настольные и настенные календари под фирменный стиль.",
-    icon: "📅",
+    icon: <CalendarDays size={26} />,
   },
   {
     name: "Штампы",
     category: "Бизнес",
     description: "Штампы для бизнеса, офиса и документов с удобным заказом.",
-    icon: "🖋️",
+    icon: <Stamp size={26} />,
   },
   {
     name: "Печати",
     category: "Бизнес",
     description: "Изготовление печатей с быстрыми сроками и понятным процессом.",
     tag: "Срочно",
-    icon: "🔖",
+    icon: <Printer size={26} />,
   },
 ];
 
@@ -200,25 +228,25 @@ const advantages = [
   {
     title: "Быстрые сроки",
     text: "Оперативно подскажем сроки и не будем тянуть с ответом.",
-    icon: "⏱",
+    icon: <TimerReset size={24} />,
     gradient: "from-cyan-400 to-cyan-600",
   },
   {
     title: "Качественная печать",
     text: "Аккуратный результат и внимание к деталям в каждом заказе.",
-    icon: "✦",
+    icon: <Sparkles size={24} />,
     gradient: "from-fuchsia-400 to-fuchsia-600",
   },
   {
     title: "Удобный заказ",
     text: "Клиенту легко: быстрое общение и понятный путь к результату.",
-    icon: "✓",
+    icon: <Send size={24} />,
     gradient: "from-yellow-300 to-yellow-500",
   },
   {
     title: "Помощь с макетом",
     text: "Поможем подготовить макет, если его ещё нет.",
-    icon: "✎",
+    icon: <NotebookPen size={24} />,
     gradient: "from-slate-500 to-slate-700",
   },
 ];
@@ -282,6 +310,10 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [request, setRequest] = useState("");
+
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     return () => {
@@ -293,6 +325,19 @@ export default function Home() {
     category === "Все"
       ? products
       : products.filter((product) => product.category === category);
+
+  const handleQuickOrder = () => {
+    const text = `Здравствуйте! Хочу оформить заказ в Basprint:
+
+Имя: ${name || "-"}
+Телефон: ${phone || "-"}
+Что нужно: ${request || "-"}`;
+
+    window.open(
+      `https://wa.me/77024056954?text=${encodeURIComponent(text)}`,
+      "_blank"
+    );
+  };
 
   const pageClass = dark
     ? "min-h-screen bg-[#06070A] text-white transition-colors duration-300"
@@ -323,6 +368,10 @@ export default function Home() {
   const secondaryButtonClass = dark
     ? "w-full sm:w-auto rounded-2xl border border-white/15 px-6 py-4 font-medium transition hover:bg-white/5 active:scale-95"
     : "w-full sm:w-auto rounded-2xl border border-slate-300 px-6 py-4 font-medium transition hover:bg-slate-50 active:scale-95";
+
+  const inputClass = dark
+    ? "w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 text-white outline-none placeholder:text-slate-400 focus:border-white/20"
+    : "w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500";
 
   return (
     <main id="top" className={pageClass}>
@@ -389,7 +438,7 @@ export default function Home() {
               }
               aria-label="Открыть меню"
             >
-              ☰
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
@@ -496,7 +545,7 @@ export default function Home() {
                 {advantages.map((item) => (
                   <div key={item.title} className={softCardClass}>
                     <div
-                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-semibold text-white bg-gradient-to-br ${item.gradient}`}
+                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-white bg-gradient-to-br ${item.gradient}`}
                     >
                       {item.icon}
                     </div>
@@ -570,8 +619,8 @@ export default function Home() {
                 <div
                   className={
                     dark
-                      ? "mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 text-3xl transition group-hover:scale-110"
-                      : "mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-slate-100 text-3xl transition group-hover:scale-110"
+                      ? "mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500/15 to-purple-500/15 text-cyan-300 transition group-hover:scale-110 group-hover:text-white"
+                      : "mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-100 to-purple-100 text-slate-700 transition group-hover:scale-110"
                   }
                 >
                   {product.icon}
@@ -647,6 +696,45 @@ export default function Home() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <Reveal>
+          <div className={sectionCardClass + " grid gap-6 p-6 sm:p-8 lg:grid-cols-2"}>
+            <div>
+              <h2 className="text-3xl font-semibold tracking-tight">Быстрый заказ</h2>
+              <p className={`mt-3 max-w-xl leading-7 ${mutedTextClass}`}>
+                Оставьте короткую заявку, и готовый текст сразу откроется в WhatsApp.
+                Это самый быстрый способ получить расчёт и сроки.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ваше имя"
+                className={inputClass}
+              />
+              <input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Телефон"
+                className={inputClass}
+              />
+              <textarea
+                value={request}
+                onChange={(e) => setRequest(e.target.value)}
+                placeholder="Что нужно напечатать или изготовить?"
+                rows={4}
+                className={inputClass + " resize-none"}
+              />
+              <button onClick={handleQuickOrder} className={primaryButtonClass} type="button">
+                Отправить в WhatsApp
+              </button>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       <section id="reviews" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
@@ -727,12 +815,23 @@ export default function Home() {
           <div className={sectionCardClass + " grid gap-6 p-6 sm:p-8 md:grid-cols-2"}>
             <div>
               <h2 className="text-3xl font-semibold tracking-tight">Контакты</h2>
-              <div className={`mt-4 space-y-2 ${mutedTextClass}`}>
-                <p>Телефон: +7 702 405 6954</p>
-                <p>Адрес: пр. Кабанбай батыра 48/1</p>
-                <p>Пн–Пт: 09:00–18:30</p>
-                <p>Перерыв: 13:00–14:00</p>
-                <p>Ориентир: около поликлиники Шипагер</p>
+              <div className={`mt-4 space-y-3 ${mutedTextClass}`}>
+                <div className="flex items-center gap-3">
+                  <Phone size={18} />
+                  <span>+7 702 405 6954</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MapPinned size={18} />
+                  <span>пр. Кабанбай батыра 48/1</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CalendarDays size={18} />
+                  <span>Пн–Пт: 09:00–18:30</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <ClockInline />
+                  <span>Перерыв: 13:00–14:00</span>
+                </div>
               </div>
             </div>
 
@@ -755,6 +854,35 @@ export default function Home() {
                 className={secondaryButtonClass}
               >
                 Открыть в 2ГИС
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 pt-6 sm:px-6">
+        <Reveal>
+          <div
+            className={
+              dark
+                ? "rounded-[28px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.03] p-8"
+                : "rounded-[28px] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8"
+            }
+          >
+            <h2 className="text-3xl font-semibold tracking-tight">
+              Готовы обсудить ваш заказ?
+            </h2>
+            <p className={`mt-3 max-w-2xl leading-7 ${mutedTextClass}`}>
+              Напишите нам в WhatsApp — быстро подскажем сроки, формат и лучший вариант под вашу задачу.
+            </p>
+            <div className="mt-6">
+              <a
+                href="https://wa.me/77024056954?text=Здравствуйте! Хочу оформить заказ в Basprint"
+                target="_blank"
+                rel="noreferrer"
+                className={primaryButtonClass}
+              >
+                Связаться в WhatsApp
               </a>
             </div>
           </div>
@@ -788,5 +916,24 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+function ClockInline() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
+    </svg>
   );
 }
